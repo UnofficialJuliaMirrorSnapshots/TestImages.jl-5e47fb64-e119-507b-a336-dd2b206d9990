@@ -1,0 +1,13 @@
+language: julia
+os:
+  - linux
+julia:
+  - 0.7
+  - 1.0
+  - nightly
+notifications:
+  email: false
+
+after_success:
+  # push coverage results to Codecov
+  - julia -e 'using Pkg; cd(joinpath(pathof(TestImages), "..", "..")); Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())'
